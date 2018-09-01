@@ -1,0 +1,16 @@
+{
+  "name": "bch-stresstest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "stresstest.js",
+  "scripts": {
+    "start": "node stresstest.js"
+  },
+  "author": "SpendBCH",
+  "license": "MIT",
+  "dependencies": {
+    "bitbox-cli": "*",
+    "bitcoincashjs": "^0.1.10",
+    "node-json-rpc": "0.0.1"
+  }
+}

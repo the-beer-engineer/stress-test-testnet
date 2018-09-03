@@ -5,13 +5,13 @@ let main = async () => {
   let useRest = false
 
   // Settings for local node mode below:
-  let numParallelTx = 7 // Number of parallel tx your node can handle
+  let numParallelTx = 20 // Number of parallel tx your node can handle
   let bitboxConfig = { // Your node's RPC creds
     protocol: 'http',
     host: 'localhost',
-    port: 8332,
+    port: 8899,
     username: 'the_beer_engineer',
-    password: 'ogZFGZfAKZpzFavpoXrPSrfg9Yz1JvqXHz1vtSRTLSQ=',
+    password: '7yvzZYCHMfOrwOS12q8cMDS8rG3WSOoWpzCq7Lct4jw=',
     corsproxy: false,
     restURL: 'https://trest.bitcoin.com/v1/',
   }

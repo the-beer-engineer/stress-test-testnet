@@ -162,6 +162,7 @@ class StresstestShared {
     let rootSeed = BITBOX.Mnemonic.toSeed(mnemonic)
     let masterHDNode = BITBOX.HDNode.fromSeed(rootSeed, 'testnet')
     let hdNode = BITBOX.HDNode.derivePath(masterHDNode, "m/44'/145'/0'")
+    let feeRate = await askQuestion("Enter fee rate in Satoshis/B:")
 
     // derive the first internal change address HDNode which is going to spend utxo and receive refund
     let node0 = BITBOX.HDNode.derivePath(hdNode, "1/0")
@@ -204,9 +205,9 @@ class StresstestShared {
 
     let dustLimitSats = 547
     let maxTxChain = 24
-    let feePerTx = BITBOX.BitcoinCash.getByteCount({ P2PKH: 1 }, { P2PKH: 3 })
+    let feePerTx = BITBOX.BitcoinCash.getByteCount({ P2PKH: 1 }, { P2PKH: 3 }) * feeRate
     let satsPerAddress = feePerTx * maxTxChain + dustLimitSats
-    let splitFeePerAddress = BITBOX.BitcoinCash.getByteCount({ P2PKH: 0 }, { P2PKH: 1 })
+    let splitFeePerAddress = BITBOX.BitcoinCash.getByteCount({ P2PKH: 0 }, { P2PKH: 1 }) * feeRate
     let numAddresses = Math.floor((wallet.satoshis) / (satsPerAddress + splitFeePerAddress))
 
     // Check for max tx size limit
@@ -439,7 +440,7 @@ class StresstestShared {
     transactionBuilder.addInput(wallet.txid, wallet.vout)
 
     // Calculate fee @ 1 sat/byte
-    let byteCount = BITBOX.BitcoinCash.getByteCount({ P2PKH: 1 }, { P2PKH: 3 })
+    let byteCount = BITBOX.BitcoinCash.getByteCount({ P2PKH: 1 }, { P2PKH: 3 }) * feeRate
 
     // if (window.scaleCashSettings.isTestnet) byteCount *= 25
     // byteCount *= 25

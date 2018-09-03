@@ -1,6 +1,7 @@
 let BITBOXCli
 let BITBOX
 let rpcConf
+let feeRate
 // Interactive stuff - contributed by sploit BIP47
 const readline = require('readline')
 function askQuestion(query) {
@@ -162,7 +163,7 @@ class StresstestShared {
     let rootSeed = BITBOX.Mnemonic.toSeed(mnemonic)
     let masterHDNode = BITBOX.HDNode.fromSeed(rootSeed, 'testnet')
     let hdNode = BITBOX.HDNode.derivePath(masterHDNode, "m/44'/145'/0'")
-    let feeRate = await askQuestion("Enter fee rate in Satoshis/B:")
+    feeRate = await askQuestion("Enter fee rate in Satoshis/B:")
 
     // derive the first internal change address HDNode which is going to spend utxo and receive refund
     let node0 = BITBOX.HDNode.derivePath(hdNode, "1/0")

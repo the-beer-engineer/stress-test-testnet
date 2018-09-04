@@ -221,7 +221,7 @@ class StresstestShared {
     let satsChange = 0
     while (satsChange < dustLimitSats) {
       // Calculate splitTx fee and change to return to refundAddress
-      byteCount = BITBOX.BitcoinCash.getByteCount({ P2PKH: 1 }, { P2PKH: numAddresses + 3 }) * feeRate
+      byteCount = BITBOX.BitcoinCash.getByteCount({ P2PKH: 1 }, { P2PKH: numAddresses + 3 })
       satsChange = wallet.satoshis - byteCount - (numAddresses * satsPerAddress)
 
       if (satsChange < dustLimitSats) {
